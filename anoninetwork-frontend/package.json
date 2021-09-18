@@ -12,6 +12,7 @@
     "axios": "^0.21.4",
     "bootstrap": "^5.1.1",
     "capo-anti-swear": "^1.0.0",
+    "ejs": "^3.1.6",
     "ez-antiswear": "^1.0.0",
     "latest": "^0.2.0",
     "react": "^17.0.2",
@@ -28,7 +29,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "npx react-scripts build",
-    "deploy": "npx serve -s build",
+    "deploy": "serve --ssl-cert ../ssl/fullchain.pem --ssl-key ../ssl/privkey.pem -l 443 -s build/",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

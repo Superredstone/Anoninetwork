@@ -1,3 +1,6 @@
 anoninetwork-backend/node_modules
 anoninetwork-frontend/node_modules
+anoninetwork-frontend/build
 node_modules/
+ssl/
+
