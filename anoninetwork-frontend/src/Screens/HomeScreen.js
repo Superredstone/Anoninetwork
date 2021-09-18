@@ -93,8 +93,9 @@ function HomeScreen() {
                                             <ReactTagInput 
                                                 tags={newTags} 
                                                 onChange={(t) => {
-                                                    t[t.length -1] = "#" + t[t.length -1]
-                                                    setNewTags(t)
+                                                    t[t.length -1] = t[t.length -1].replace(/#/g, "");
+                                                    t[t.length -1] = "#" + t[t.length -1];
+                                                    setNewTags(t);
                                                 }} 
                                                 validator={(value) => {
                                                     if (WordFilterIT.check(value) || WordFilterEN.check(value)) {
@@ -145,7 +146,7 @@ function HomeScreen() {
                     !appState.loading ?
                         appState.posts.slice(0).reverse().map((x, i) => {
                             if (String(x.Tags).indexOf("#Moderator") >= 0) {
-                                return <Post style={{marginTop: 10, backgroundColor: "green"}} Title={x.Title} Content={x.Content} Tags={x.Tags} key={i} />
+                                return <Post style={{marginTop: 10, backgroundColor: "lime"}} Title={x.Title} Content={x.Content} Tags={x.Tags} key={i} />
                             } else {
                                 return <Post style={{marginTop: 10}} Title={x.Title} Content={x.Content} Tags={x.Tags} key={i} />
                             }

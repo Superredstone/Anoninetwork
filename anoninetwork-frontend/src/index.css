@@ -26,7 +26,8 @@ code {
 
 .container-shadow {
   border-radius: 15px;
-  background: #e0e0e0;
+  /*background: #e0e0e0;*/
+  background: rgba(223, 223, 223, 0.7);
   padding: 5px;
   height: 95vh;
 }
@@ -57,7 +58,7 @@ code {
 
 .footer {
   margin-top: 30px;
-  background-color: #09012e;
+  background-color: #0c0041;
   height: 30vh;
   text-align: center;
 }
