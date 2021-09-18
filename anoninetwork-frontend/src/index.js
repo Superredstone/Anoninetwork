@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route } from 'react-router-dom';
 
+import './background.svg';
+
 //CSS
 import './index.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
@@ -16,14 +18,16 @@ import HomeScreen from './Screens/HomeScreen';
 import BecomeModScreen from './Screens/BecomeModScreen';
 import Anonimato from './Screens/Anonimato';
 import Background from './Components/Background';
+import Query from './Screens/Query';
 
 ReactDOM.render(
   <div className="background">
     <Background />
-    <div className="container container-shadow" style={{marginTop: 20}}>
+    <div className="container container-shadow attach-borders-top" style={{marginTop: 20}}>
       <React.StrictMode>
         <BrowserRouter>
           <Route exact path="/" component={HomeScreen} />
+          <Route exact path="/query/:query" component={Query} />
           <Route exact path="/becomemoderator" component={BecomeModScreen} />
           <Route exact path="/anonimato" component={Anonimato} />
           <Route exact path="/404">
@@ -36,9 +40,9 @@ ReactDOM.render(
       <div className="footer-content">
         <div style={{height: 20}}></div>
         <p className="footer-text">
-          Per scoprire come funziona l'anonimato su Anoninetwork <a href="/anonimato">clicca qui</a><br/>
-          Per problemi contattatemi a questa email: <a href="mailto: patrickcanal3@gmail.com?subject = Anononinetwork issue">patrickcanal3@gmail.com</a><br/>
-          Se vuoi diventare un moderatore del sito <a href="/becomemoderator">clicca qui</a>
+          Created with &#10084; by Patrick Canal <br/>
+          <a style={{color: 'white'}} target="_blank" href="https://github.com/Superredstone">Github profile</a><br/>
+          <a style={{color: 'white'}} target="_blank" href="https://github.com/Superredstone/Anoninetwork">Project page</a>
         </p>
       </div>
     </div>

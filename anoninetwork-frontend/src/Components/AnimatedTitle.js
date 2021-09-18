@@ -1,7 +1,7 @@
 function AnimatedTitle({ text }) {
     return (
         <div className="typing">
-            <h1 className="bouncing-animation">{text}</h1>
+            <a href="/" style={{color: "black", textDecoration: "none"}}><h1 className="bouncing-animation">{text}</h1></a>
         </div>
     )
 }

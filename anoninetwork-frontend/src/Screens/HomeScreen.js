@@ -4,8 +4,8 @@ import Post from "../Components/Post";
 import ReactTagInput from "@pathofdev/react-tag-input";
 import { useEffect, useState } from 'react';
 import AnimatedTitle from '../Components/AnimatedTitle';
-
-const backendIP = "http://172.20.1.26:3001"
+import Search from '../Components/Search';
+import Const from '../Const';
 
 const AntiSwear = require("capo-anti-swear");
 const WordFilterIT = new AntiSwear("it");
@@ -28,14 +28,13 @@ function HomeScreen() {
     useEffect(() => {
         setAppState({ loading: true });
 
-        axios.get(backendIP + "/getposts")
+        axios.get(Const.backendIP + "/getposts")
             .then(response => {
                 setAppState({ posts: response.data.Posts, loading: false, postIndex: 0 });
             })
             .catch(error => {
                 console.log(error);
             });
-
     }, [setAppState])
 
     function HandleCreatePost() {
@@ -53,8 +52,7 @@ function HomeScreen() {
         if (String(data.Title).length < 5 || String(data.Title).length > 50  || String(data.Content).length < 5 || String(data.Content).length > 500) {
             window.location.href = "/";
         } else {
-
-            axios.post(backendIP + "/createpost", data)
+            axios.post(Const.backendIP + "/createpost", data)
             .then(response => {
                 console.log(response);
                 window.location.href = "/";
@@ -85,11 +83,11 @@ function HomeScreen() {
                                     <form className="create-post-form" onSubmit={handleSubmit(HandleCreatePost)}>
                                         <div className="form-floating">
                                             <input className="form-control" placeholder="." {...register("post-title")} autoComplete="off"></input>
-                                            <label>Titolo del post</label>
+                                            <label>Post title</label>
                                         </div>
                                         <div className="form-floating">
                                             <textarea contentEditable suppressContentEditableWarning type="text" className="form-control create-post-content" placeholder="." style={{height: "30vh", resize: "none"}} {...register("post-content")}></textarea>
-                                            <label>Contenuto del post</label>
+                                            <label>Post content</label>
                                         </div>
                                         <div className="form-floating">
                                             <ReactTagInput 
@@ -112,18 +110,18 @@ function HomeScreen() {
                                                 readOnly={false}
                                                 removeOnBackspace={true}
                                                 maxTags={10}
-                                                placeholder="Scrivi qui i tuoi tag e premi invio per aggiungerli"
+                                                placeholder="Type here tags and then press enter"
                                             />
                                         </div>
                                         <div style={{marginTop: 10}}>
                                             <i>
-                                                Attenzione: se il contenuto del post o il titolo ha meno di 5 caratteri 
-                                                il post non verrà creato e si verrà reindirezzati alla schermata home
+                                                Warning: if the post content or the post title has minus than 5 characters
+                                                the post will be not created and you will be redirected to the home screen
                                             </i>
                                         </div>
                                         <div className="modal-footer">
-                                            <button type="button" className="btn btn-danger" data-bs-dismiss="modal">Cancella</button>
-                                            <button className="btn btn-success" type="submit">Crea</button>
+                                            <button type="button" className="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                                            <button className="btn btn-success" type="submit">Create</button>
                                         </div>
                                     </form>
                                 : 
@@ -135,6 +133,12 @@ function HomeScreen() {
                     </div>
                 </div>
             </div>
+
+            {
+                !appState.loading ? 
+                    <Search></Search>
+                : null
+            }
 
             <div className="posts">
                 {
