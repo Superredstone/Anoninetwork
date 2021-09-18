@@ -1,0 +1,23 @@
+{
+  "name": "anoninetwork",
+  "version": "1.0.0",
+  "description": "1) Install modules\r 2) Install nodemon \r 3) Setup MongoDB creating an index",
+  "main": "InitDB.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Superredstone/Anoninetwork.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Superredstone/Anoninetwork/issues"
+  },
+  "homepage": "https://github.com/Superredstone/Anoninetwork#readme",
+  "dependencies": {
+    "mongodb": "^4.1.2"
+  }
+}

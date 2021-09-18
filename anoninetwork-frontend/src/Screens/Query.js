@@ -40,7 +40,11 @@ function Query(props) {
                     <div>
                         {
                             queryResults.map((post, i) => {
-                                return <Post style={{marginTop: 10}} Title={post.Title} Content={post.Content} Tags={post.Tags} key={i}></Post>
+                                if (String(post.Tags).indexOf("#Moderator") >= 0) {
+                                    return <Post style={{marginTop: 10, backgroundColor: "lime"}} Title={post.Title} Content={post.Content} Tags={post.Tags} key={i}></Post>
+                                } else {
+                                    return <Post style={{marginTop: 10}} Title={post.Title} Content={post.Content} Tags={post.Tags} key={i}></Post>
+                                }
                             })
                         }
                         <div>

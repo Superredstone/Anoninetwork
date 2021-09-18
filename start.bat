@@ -1,1 +1,0 @@
-npx concurrently ".\anoninetwork-backend\cmd\cmd.exe" "cd .\anoninetwork-frontend && npx serve build -l 3000"
