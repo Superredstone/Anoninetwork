@@ -1,6 +1,7 @@
 anoninetwork-backend/node_modules
+anoninetwork-backend/nohup.out
 anoninetwork-frontend/node_modules
 anoninetwork-frontend/build
+anoninetwork-frontend/nohup.out
 node_modules/
 ssl/
-

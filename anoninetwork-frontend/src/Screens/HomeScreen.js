@@ -28,7 +28,7 @@ function HomeScreen() {
     useEffect(() => {
         setAppState({ loading: true });
 
-        axios.get(Const.backendIP + "/getposts")
+        axios.get(Const.backendIP + "/posts")
             .then(response => {
                 setAppState({ posts: response.data.Posts, loading: false, postIndex: 0 });
             })
@@ -116,8 +116,7 @@ function HomeScreen() {
                                         </div>
                                         <div style={{marginTop: 10}}>
                                             <i>
-                                                Warning: if the post content or the post title has minus than 5 characters
-                                                the post will be not created and you will be redirected to the home screen
+                                                Warning: if there are less than five characters in the title, in the content or there are less than two tags the post will not be published
                                             </i>
                                         </div>
                                         <div className="modal-footer">
