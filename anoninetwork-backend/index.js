@@ -17,19 +17,30 @@ require("mongodb").MongoClient.connect(process.env.DB_IP + ":" + process.env.DB_
     const PostsCollection = dbClient.db(process.env.DB).collection(process.env.COLLECTION);
     console.log("MongoDB connected");
 
-    app.get("/getposts", async (req, res) => {
+    app.get("/posts", async (req, res) => {
         const posts = await PostsCollection.find({}).toArray();
 
         res.send({Error: null, Posts: posts})
     });
     app.post("/createpost", async (req, res) => {
-        await PostsCollection.insertOne({
-            Title: req.body.Title,
-            Content: req.body.Content,
-            Tags: req.body.Tags
-        }).then(() => {
-            res.send({Error: null});
-        });
+        if (typeof req.body.Title === "string" && typeof req.body.Content === "string" && typeof req.body.Tags === "string") {
+            if (String(req.body.Title).length < 4 || String(req.body.Title).length > 50 || String(req.body.Content).length < 4 || String(req.body.Content).length > 500) {
+                res.send({Error: "Invalid content lenght"});
+            }
+            if (/(^|\B)#(?![0-9_]+\b)([a-zA-Z0-9_]{1,30})(\b|\r)\s/.test(req.body.Tags)) {
+                await PostsCollection.insertOne({
+                    Title: req.body.Title,
+                    Content: req.body.Content,
+                    Tags: req.body.Tags
+                }).then(() => {
+                    res.send({Error: null});
+                });    
+            } else {
+                res.send({Error: "Invalid tags"});
+            }    
+        } else {
+            res.send({Error: "Only strings are accepted to be inserted inside the DB"});
+        }
     });
     app.post("/queryposts", async (req, res) => {
         const queryed = PostsCollection.find( { $text: { $search: req.body.Content } } );
