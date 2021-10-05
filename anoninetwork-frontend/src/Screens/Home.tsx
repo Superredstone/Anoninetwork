@@ -75,11 +75,6 @@ function Home() {
     return (
         <div>
             {
-                Status.redirect ? 
-                    <Redirect to={"/?query=" + Status.NewQuery}></Redirect>
-                : null
-            }
-            {
                 Status.showModal ?
                     <div className="fixed h-screen w-screen bg-gray-100 bg-opacity-60">
                         <div className="flex justify-center">
@@ -109,7 +104,7 @@ function Home() {
                     Status.error ?
                         <div className="flex justify-center">
                             <div className="bg-red-500 rounded-xl w-1/2 p-5 mt-5 text-white">
-                                ERROR: {Status.error}
+                                ERROR: <p>{Status.error}</p>
                             </div>
                         </div>
                     : null
@@ -149,6 +144,12 @@ function Home() {
                 <div>Created with &#10084; by Patrick</div>
                 <a className="underline" href="https://github.com/Superredstone/Anoninetwork/">Github page</a>
             </div>
+
+            {
+                Status.redirect ? 
+                    <Redirect to={"/?query=" + Status.NewQuery}></Redirect>
+                : null
+            }
         </div>
     )
 }
