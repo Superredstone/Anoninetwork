@@ -51,5 +51,5 @@ require("mongodb").MongoClient.connect(process.env.DB_IP + ":" + process.env.DB_
     if (!process.env.DEV) {
         https.createServer(httpsConfig, app).listen(process.env.PORT);
     }
-    http.createServer(app).listen(process.env.PORT);
+    http.createServer(app).listen(process.env.PORT + 1);
 });
