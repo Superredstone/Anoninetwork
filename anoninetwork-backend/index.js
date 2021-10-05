@@ -27,7 +27,7 @@ require("mongodb").MongoClient.connect(process.env.DB_IP + ":" + process.env.DB_
             if (String(req.body.Title).length < 4 || String(req.body.Title).length > 50 || String(req.body.Content).length < 4 || String(req.body.Content).length > 500) {
                 res.send({Error: "Invalid content lenght"});
             }
-            if (/(^|\B)#(?![0-9_]+\b)([a-zA-Z0-9_]{1,30})(\b|\r)\s/.test(req.body.Tags)) {
+            //if (/(^|\B)#(?![0-9_]+\b)([a-zA-Z0-9_]{1,30})(\b|\r)\s/.test(req.body.Tags)) {
                 await PostsCollection.insertOne({
                     Title: req.body.Title,
                     Content: req.body.Content,
@@ -35,9 +35,9 @@ require("mongodb").MongoClient.connect(process.env.DB_IP + ":" + process.env.DB_
                 }).then(() => {
                     res.send({Error: null});
                 });    
-            } else {
-                res.send({Error: "Invalid tags"});
-            }    
+            //} else {
+            //    res.send({Error: "Invalid tags"});
+            //}    
         } else {
             res.send({Error: "Only strings are accepted to be inserted inside the DB"});
         }
