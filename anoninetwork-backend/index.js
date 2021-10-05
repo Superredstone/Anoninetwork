@@ -3,12 +3,12 @@ const https = require("https");
 const http = require("http");
 const fs = require("fs");
 const cors = require("cors");
+require("dotenv").config();
 
 const app = express();
 const privatekey = fs.readFileSync("../ssl/privkey.pem", "utf8");
 const certificate = fs.readFileSync("../ssl/fullchain.pem", "utf8");
 const httpsConfig = {key: privatekey, cert: certificate};
-const config = require("dotenv").config();
 
 app.use(express.json());
 app.use(cors());
@@ -48,6 +48,8 @@ require("mongodb").MongoClient.connect(process.env.DB_IP + ":" + process.env.DB_
         res.send({Error: null, Results: response})
     });
 
-    https.createServer(httpsConfig, app).listen(process.env.PORT);
-    http.createServer(app).listen(process.env.PORT - 1);
+    if (!process.env.DEV) {
+        https.createServer(httpsConfig, app).listen(process.env.PORT);
+    }
+    http.createServer(app).listen(process.env.PORT);
 });

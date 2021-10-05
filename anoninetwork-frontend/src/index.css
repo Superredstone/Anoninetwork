@@ -5,87 +5,13 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: rgb(2,0,36);
-  background: url("./background.svg");
-  background-repeat: no-repeat;
-  background-size: 100vw 100vh;
 }
-
-/*
-background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 0%, rgba(0,0,51,1) 100%);
-*/
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
-.background {
-  height: 90vh;
-}
-
-.container-shadow {
-  border-radius: 15px;
-  /*background: #e0e0e0;*/
-  background: rgba(223, 223, 223, 0.7);
-  padding: 5px;
-  height: 95vh;
-}
-
-.create-post-form > div {
-  margin-bottom: 10px;
-}
-
-.bottom-right {
-  z-index: 1;
-  position: fixed;
-  width: 75px;
-  height: 75px;
-  bottom: 20px;
-  right: 20px;
-}
-
-.loading-spinner  {
-  z-index: 1;
-  margin-top: 10%;
-  margin-left: 50%;
-}
-
-.posts {
-  overflow-y: scroll;
-  height: 75vh;
-}
-
-.footer {
-  margin-top: 30px;
-  background-color: #0c0041;
-  height: 30vh;
-  text-align: center;
-}
-
-.footer-content {
-  color: white;
-  position: relative;
-  margin: 10px;
-}
-
-.logo {
-  width: 30px; 
-  height: 30px;
-  margin-left: 20px;
-}
-
-/*
-  Typing animation
-*/
-
-.typing h1 {
-  position: relative;
-  justify-content: center;
-  align-items: flex-start;
-  display: flex;
-}
-
-.search-input {
-  margin-bottom: 20px;
+input:focus, textarea:focus {
+  outline: none;
 }
