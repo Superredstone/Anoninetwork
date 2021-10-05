@@ -125,7 +125,7 @@ function Home() {
                     : 
                         <div>
                             {
-                                Status.Posts.map((Post, i) => {
+                                Status.Posts.slice(0).reverse().map((Post, i) => {
                                     return (
                                         <div className="flex p-5 bg-white hover:bg-gray-100 rounded-xl shadow-2xl h-auto m-5" key={i}>
                                             <span>

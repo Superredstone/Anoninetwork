@@ -1,5 +1,5 @@
 const exported = {
-    BACKEND_IP: "http://localhost:3001"
+    BACKEND_IP: "https://anoninetwork.xyz:3001"
 }
 
 export default exported;
