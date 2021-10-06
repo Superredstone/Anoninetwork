@@ -23,21 +23,17 @@ require("mongodb").MongoClient.connect(process.env.DB_IP + ":" + process.env.DB_
         res.send({Error: null, Posts: posts})
     });
     app.post("/createpost", async (req, res) => {
-        if (typeof req.body.Title === "string" && typeof req.body.Content === "string" && typeof req.body.Tags === "string") {
+        if (typeof req.body.Title === "string" && typeof req.body.Content === "string") {
             if (String(req.body.Title).length < 4 || String(req.body.Title).length > 50 || String(req.body.Content).length < 4 || String(req.body.Content).length > 500) {
                 res.send({Error: "Invalid content lenght"});
             }
-            //if (/(^|\B)#(?![0-9_]+\b)([a-zA-Z0-9_]{1,30})(\b|\r)\s/.test(req.body.Tags)) {
-                await PostsCollection.insertOne({
-                    Title: req.body.Title,
-                    Content: req.body.Content,
-                    Tags: req.body.Tags
-                }).then(() => {
-                    res.send({Error: null});
-                });    
-            //} else {
-            //    res.send({Error: "Invalid tags"});
-            //}    
+            await PostsCollection.insertOne({
+                Title: req.body.Title,
+                Content: req.body.Content,
+                Tags: req.body.Tags
+            }).then(() => {
+                res.send({Error: null});
+            });    
         } else {
             res.send({Error: "Only strings are accepted to be inserted inside the DB"});
         }
@@ -48,8 +44,10 @@ require("mongodb").MongoClient.connect(process.env.DB_IP + ":" + process.env.DB_
         res.send({Error: null, Results: response})
     });
 
-    if (!process.env.DEV) {
+    if (process.env.DEV === "false") {
+        console.log("HTTPS started on " + process.env.PORT);
         https.createServer(httpsConfig, app).listen(process.env.PORT);
     }
+    console.log("HTTP started on " + (process.env.PORT + 1));
     http.createServer(app).listen(process.env.PORT + 1);
 });
