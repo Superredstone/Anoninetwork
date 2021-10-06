@@ -30,3 +30,12 @@ Compile and serve frontend
 ```bash
 cd ./anoninetwork-frontend/ && npm run build && npm run serve # If you want to run without HTTPS you must use "serve -l 80 build/" instead of "npm run serve"
 ```
+
+# How to fix: ReferenceError: TextEncoder is not defined #198
+Just edit 
+
+```Anoninetwork/anoninetwork-backend/node_modules/whatwg-url/dist/encoding.js```
+
+with your favourite editor and add this line to the second line:
+ 
+```const { TextEncoder, TextDecoder } = require("util");```
